@@ -1,0 +1,80 @@
+// ==UserScript==
+// @name        RMultiDogeTip
+// @namespace   http://github.com/richardjrossiii/
+// @description Much Tip Many Users Doge
+// @include     http://*.reddit.com/r/*/comments/*
+// @require     http://code.jquery.com/jquery-migrate-1.2.1.min.js
+// @version     1
+// @grant       none
+// ==/UserScript==
+
+var veryUsernames = [];
+var veryPostIds = [];
+
+var veryMenus = $('ul.flat-list.buttons');
+var suchOPMenu = veryMenus.first();
+
+var suchOPUsername = suchOPMenu.parent().find('.tagline .author').text();
+
+veryMenus.each(function (muchIndex, suchMenu) {
+    suchMenu = $(suchMenu);
+    if (suchMenu.is(suchOPMenu)) return;
+
+    var suchCommentOwner = suchMenu.parent().find('.tagline .author').text();
+    var suchPostId = suchMenu.parents('[data-fullname]').attr('data-fullname');
+
+    if (suchCommentOwner === suchOPUsername || 
+        suchCommentOwner === "dogetipbot"   || 
+        suchCommentOwner === "so_doge_tip"  ||
+        veryUsernames.indexOf(suchCommentOwner) !== -1)
+        return;
+
+    veryUsernames.push(suchCommentOwner);
+    veryPostIds.push(suchPostId);
+});
+
+function dogeMultiTip() {
+    var amount = prompt('Such multi tip, very wow. Much spread amount?');        
+    amount = parseFloat(amount);
+
+    if (amount <= 0 || isNaN(amount)) {
+        alert('So poor very shibe you.');
+        return;
+    }
+    
+    var amountPer = amount / veryUsernames.length;
+    var should = confirm('Last chance: Are you sure you want to tip ' + amountPer + ' per user in the thread?');
+    
+    if (!should) return;
+
+    for (var i = 0; i < veryPostIds.length; i++) {
+        var suchPostId = veryPostIds[i];
+        
+        var suchForm = $('input[value="' + suchPostId + '"]').parent();
+        var suchReplyButton = suchForm.siblings('ul.buttons').find('a:contains("reply")');
+        
+        if (suchReplyButton.length == 0)
+        {
+            alert('No reply. Such error. Very sad. Check status for login.');
+            return;
+        }
+        
+        reply(suchReplyButton[0]);
+        
+        var suchForm = $('input[value="' + suchPostId + '"]').parent();
+        var suchTextArea = suchForm.find('textarea[name="text"]');
+        
+        if (suchTextArea.val()) {
+            suchTextArea.val(suchTextArea.val() + '+/u/dogetipbot ' + amountPer + ' doge');
+        } else {
+            suchTextArea.val('+/u/dogetipbot ' + amountPer + ' doge');
+        }
+        
+        suchForm.submit();
+    }
+}
+
+var multiTipButton = $('<li><a href="javascript:void(0)">multi tip</a></li>');
+multiTipButton.click(dogeMultiTip);
+
+suchOPMenu.append(multiTipButton);
