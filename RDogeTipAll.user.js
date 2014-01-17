@@ -47,7 +47,7 @@ function dogeMultiTip() {
     
     if (!should) return;
     
-    if (amountPer <= 5) {
+    if (amountPer < 5) {
         alert('/u/dogetipbot does not accept tips less than 5 doge!');
         return;
     }
