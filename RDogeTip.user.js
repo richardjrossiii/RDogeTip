@@ -23,7 +23,6 @@ function muchTip(soEvent) {
     amount = parseFloat(amount);
 
     if (amount <= 0 || isNaN(amount)) {
-        alert('So poor very shibe you.');
         return;
     }
     
@@ -32,7 +31,7 @@ function muchTip(soEvent) {
     var muchForm = $('input[value="' + suchPostId + '"]').parent();
     
     var veryTextArea = muchForm.find('textarea[name="text"]');
-    veryTextArea.val('+/u/dogetipbot ' + amount + ' doge');
+    veryTextArea.val(veryTextArea.val() + '\n+/u/dogetipbot ' + amount + ' doge');
     
     // Leave it up to the user to submit.
 }
