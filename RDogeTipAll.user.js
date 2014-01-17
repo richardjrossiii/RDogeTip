@@ -65,7 +65,7 @@ function dogeMultiTip() {
         
             if (suchReplyButton.length == 0)
             {
-                alert('No reply. Such error. Very sad. Check status for login.');
+                alert('No reply. Such error. Very sad. Check status for login. For user: ' + suchTargetUsername);
                 return;
             }
         
