@@ -46,6 +46,11 @@ function dogeMultiTip() {
     var should = confirm('Last chance: Are you sure you want to tip ' + amountPer + ' doge per user in the thread?');
     
     if (!should) return;
+    
+    if (amountPer <= 5) {
+        alert('/u/dogetipbot does not accept tips less than 5 doge!');
+        return;
+    }
 
     for (var i = 0; i < veryPostIds.length; i++) {
         (function() {
