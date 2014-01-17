@@ -15,6 +15,7 @@ var veryMenus = $('ul.flat-list.buttons');
 var suchOPMenu = veryMenus.first();
 
 var suchOPUsername = suchOPMenu.parent().find('.tagline .author').text();
+var suchLoggedInUsername = reddit.logged;
 
 veryMenus.each(function (muchIndex, suchMenu) {
     suchMenu = $(suchMenu);
@@ -24,6 +25,7 @@ veryMenus.each(function (muchIndex, suchMenu) {
     var suchPostId = suchMenu.parents('[data-fullname]').attr('data-fullname');
 
     if (suchCommentOwner === suchOPUsername || 
+        suchCommentOwner === suchLoggedInUsername ||
         suchCommentOwner === "dogetipbot"   || 
         suchCommentOwner === "so_doge_tip"  ||
         veryUsernames.indexOf(suchCommentOwner) !== -1)
@@ -72,15 +74,13 @@ function dogeMultiTip() {
             var suchForm = $('input[value="' + suchPostId + '"]').parent();
             var suchTextArea = suchForm.find('textarea[name="text"]');
         
-            if (suchTextArea.val()) {
-                suchTextArea.val(suchTextArea.val() + '+/u/dogetipbot ' + amountPer + ' doge');
-            } else {
-                suchTextArea.val('Tip from ' + suchOPUsername + ' to ' + suchTargetUsername + ':\n+/u/dogetipbot ' + amountPer + ' doge');
-            }
+            suchTextArea.val('Tip from ' + suchLoggedInUsername + ' to ' + suchTargetUsername + ':\n+/u/dogetipbot ' + amountPer + ' doge');
         
+            /*
             setTimeout(function() {
                 suchForm.submit();
             }, suchTimeout);
+            */
         })();
     }
 }
