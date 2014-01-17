@@ -43,7 +43,7 @@ function dogeMultiTip() {
     }
     
     var amountPer = amount / veryUsernames.length;
-    var should = confirm('Last chance: Are you sure you want to tip ' + amountPer + ' per user in the thread?');
+    var should = confirm('Last chance: Are you sure you want to tip ' + amountPer + ' doge per user in the thread?');
     
     if (!should) return;
 
