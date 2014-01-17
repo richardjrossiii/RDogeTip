@@ -24,7 +24,8 @@ veryMenus.each(function (muchIndex, suchMenu) {
     var suchCommentOwner = suchMenu.parent().find('.tagline .author').text();
     var suchPostId = suchMenu.parents('[data-fullname]').attr('data-fullname');
 
-    if (suchCommentOwner === suchOPUsername || 
+    if (suchCommentOwner == "" ||
+        suchCommentOwner === suchOPUsername || 
         suchCommentOwner === suchLoggedInUsername ||
         suchCommentOwner === "dogetipbot"   || 
         suchCommentOwner === "so_doge_tip"  ||
