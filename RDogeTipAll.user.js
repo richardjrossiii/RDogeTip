@@ -77,11 +77,9 @@ function dogeMultiTip() {
         
             suchTextArea.val('Tip from ' + suchLoggedInUsername + ' to ' + suchTargetUsername + ':\n+/u/dogetipbot ' + amountPer + ' doge');
         
-            /*
             setTimeout(function() {
                 suchForm.submit();
             }, suchTimeout);
-            */
         })();
     }
 }
