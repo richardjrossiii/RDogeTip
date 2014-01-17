@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        DogeTip
+// @name        RDogeTip
 // @namespace   http://github.com/richardjrossiii/
 // @description Much Tip Very Users Doge
 // @include     http://*.reddit.com/r/*/comments/*
