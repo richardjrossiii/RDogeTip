@@ -10,4 +10,6 @@ Installation is simple, as this is a user-script.
    - Safari Users: [NinjaKit](https://github.com/os0x/NinjaKit)
 2. Once you have that, you should be able to install this script by simply clicking this link:  
     https://github.com/richardjrossiii/RDogeTip/raw/master/RDogeTip.user.js
+    If you'd like an easy way to tip all users in a thread, try this script instead:
+    https://github.com/richardjrossiii/RDogeTip/raw/master/RDogeTipAll.user.js
 3. And that's it! Start tipping users with your Doge!
