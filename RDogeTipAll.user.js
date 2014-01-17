@@ -48,29 +48,35 @@ function dogeMultiTip() {
     if (!should) return;
 
     for (var i = 0; i < veryPostIds.length; i++) {
-        var suchPostId = veryPostIds[i];
+        (function() {
+            var suchPostId = veryPostIds[i];
+            var suchTargetUsername = veryUsernames[i];
+            var suchTimeout = i * 1500;
         
-        var suchForm = $('input[value="' + suchPostId + '"]').parent();
-        var suchReplyButton = suchForm.siblings('ul.buttons').find('a:contains("reply")');
+            var suchForm = $('input[value="' + suchPostId + '"]').parent();
+            var suchReplyButton = suchForm.siblings('ul.buttons').find('a:contains("reply")');
         
-        if (suchReplyButton.length == 0)
-        {
-            alert('No reply. Such error. Very sad. Check status for login.');
-            return;
-        }
+            if (suchReplyButton.length == 0)
+            {
+                alert('No reply. Such error. Very sad. Check status for login.');
+                return;
+            }
         
-        reply(suchReplyButton[0]);
+            reply(suchReplyButton[0]);
         
-        var suchForm = $('input[value="' + suchPostId + '"]').parent();
-        var suchTextArea = suchForm.find('textarea[name="text"]');
+            var suchForm = $('input[value="' + suchPostId + '"]').parent();
+            var suchTextArea = suchForm.find('textarea[name="text"]');
         
-        if (suchTextArea.val()) {
-            suchTextArea.val(suchTextArea.val() + '+/u/dogetipbot ' + amountPer + ' doge');
-        } else {
-            suchTextArea.val('+/u/dogetipbot ' + amountPer + ' doge');
-        }
+            if (suchTextArea.val()) {
+                suchTextArea.val(suchTextArea.val() + '+/u/dogetipbot ' + amountPer + ' doge');
+            } else {
+                suchTextArea.val('Tip from ' + suchOPUsername + ' to ' + suchTargetUsername + ':\n+/u/dogetipbot ' + amountPer + ' doge');
+            }
         
-        suchForm.submit();
+            setTimeout(function() {
+                suchForm.submit();
+            }, suchTimeout);
+        })();
     }
 }
 
